@@ -1,7 +1,7 @@
 
 #include <bits/stdc++.h>
 #include<iostream>
-#define COUNT 5
+#define COUNT 10
 using namespace std;
 
 struct Node {
