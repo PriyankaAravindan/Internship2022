@@ -1,7 +1,6 @@
-
 #include <bits/stdc++.h>
 #include<iostream>
-#define COUNT 10
+#define COUNT 5
 using namespace std;
 
 struct Node {
@@ -54,7 +53,7 @@ struct Node* SearchNode(int key, struct Node* ptr){
 	}
 }
 
-struct Node* insertNode(struct Node* root, int expand_key ,int key )//,double obj_value, vector<double> obj_coeffs, vector<int> variables_used, int n, int k)
+struct Node* insertNode(struct Node* root, int expand_key ,int key )//,double obj_value, vector<double> obj_coeffs, vector<int> variables_used, int n, int k){
 {
     	Node* node = newNode(key);// ,obj_value, obj_coeffs, variables_used, n, k);
     	if (root == NULL){

@@ -1,0 +1,37 @@
+import pulp
+import scipy.optimize
+from ortools.linear_solver import pywraplp
+
+def create_solver():
+	data = {}
+    data['constraint_coeffs'] = [
+        [40, 50, 30, 10, 10, 40, 30],
+    ]
+    data['bounds'] = [100]
+    data['obj_coeffs'] = [40, 60, 10, 10, 3, 20, 60]
+    data['num_vars'] = 7
+    data['num_constraints'] = 1
+    return data
+
+
+solver = pywraplp.Solver('tryCBC', create_solver())
+x = {}
+for i in range(0,7):
+    x = solver.BoolVar(name = 'x'+str(i) )
+
+print('Number of variables =', solver.NumVariables())
+l1 = [40,50,30,10,10,40,30]
+r1 = 100
+coeff = [40,60,10,10,3,20,60]
+
+solver.Add(sum(l1*x) <= r1)
+solver.Maximize(sum(coeff * x))
+status = solver.Solve()
+
+if status == pywraplp.Solver.OPTIMAL:
+    print('Solution:')
+    print('Objective value =', solver.Objective().Value())
+    for i in range(0,7):
+        print('x' +str(i) + '= ', x[i].solution_value())
+else:
+    print('The problem does not have an optimal solution.')

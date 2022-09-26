@@ -1,0 +1,3 @@
+
+def SelectVariable():
+	print("Varaiables : ")
